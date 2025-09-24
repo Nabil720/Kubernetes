@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dp
+  labels:
+    env:  demo
+spec:
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        env: demo
+        type: webserver
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      env: demo
+
+    
